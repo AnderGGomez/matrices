@@ -3,6 +3,7 @@ from time import process_time
 import os
 import random
 
+
 def llenar(matriz, fil_Col):
     """
     matriz=es una matriz.
@@ -28,44 +29,6 @@ def transpuesta(a, t, fil_col):
         t.append(fila)
 
 
-def sel(a, b, c, inicio, fin):
-    for k in range (inicio, fin):
-        item1=a[k]
-        fil_resul=[]
-        for i in range (len(a)):
-            sum=mul(item1, b, i)
-            fil_resul.append(sum)
-        c.append(fil_resul)
-    return
-
-def m(l):
-    sum=0
-    for i in range (len(l[0])):
-        sum+=l[0][i]*l[1][i]
-    return sum
-
-def m1(a, b, r):
-    sum=0
-    for i in range (len(a)):
-        sum+=a[i]*b[i]
-    r.append(sum)
-
-
-def recorrer1(a, b, l):
-    for item1 in a:
-        print(item1)
-        pro=list()
-        with Manager() as manager:
-            r=manager.list()
-            for item2 in b:
-                p=Process(target=m1, args=(item1, item2, r,))
-                pro.append(p)
-                p.start()
-            
-            for p in pro:
-                p.join()
-            
-            l.append(list(r))
 
 def imprimir(lista):
 	for i in lista:
@@ -80,45 +43,60 @@ def mul(l):
         lista.append(suma)
     return lista
             
-# [0, 0, 0] | [0, 1, 2]
-# [1, 1, 1] | [0, 1, 2]
-# [2, 2, 2] | [0, 1, 2]
-
 
 #------------------
 if __name__ == "__main__":
-    n=1000
-    l=[]
-    a=[]
-    b=[]
-    t=[]
-    llenar(a,n)
-    llenar(b,n)
 
-    transpuesta(b, t, n)
+    #Se define el tamaño del circuito.
+    tam_circuito=10
 
-    iterable=list()
-    for i in range (n):
-        iterable.append([a[i], t])
-    print("---")
-    ti=process_time()
-    m=Pool().map(mul, iterable)
-    tf=process_time()
+    #Se define el conjunto de datos.
+    pruebas=[100, 200, 400, 800, 1200, 1400, 1600, 1800, 2000, 2200]
 
-    print(tf-ti)
+    for circuito in range (tam_circuito):
+
+        #Se crea un lista que almacenara los tiempos de cpu de cada
+        #elemento en el conjunto de datos.
+        tiempos=list()
+
+        #Una vez elegido un tamaño de la se procede a crearlas.
+        for fil_col in pruebas:
+
+            #Definicion de las listas (matrices)
+            l=[]
+            a=[]
+            b=[]
+            t=[]
+
+            #Se llenan las matrices.
+            llenar(a,fil_col)
+            llenar(b,fil_col)
+
+            
+            transpuesta(b, t, fil_col)
 
 
-    
+            # Se formatean los datos en un interable para la distribucion entre procesos.
+            
+            iterable=list()
+            for i in range (fil_col):
+                iterable.append([a[i], t])
 
-    #ti=process_time()
-    #recorrer1(a, t, l)
-    #tf=process_time()
 
-    #ti=process_time()
-    #recorrer(a, t, l)
-    #tf=process_time()
-    #print(tf-ti)
-    #print(Pool().map(m, [[l1,l2]]))
+            #Se llama a la funcion multiplicar de manera concurrente con los valores datos en el iterable.
+            ti=process_time()
+            m=Pool().map(mul, iterable)
+            tf=process_time()
+
+            tiempos.append(tf-ti)
+
+        
+        print("Circuito {} Completado".format(circuito)) 
+
+        #Terminado cada circuito se guardan los resultados
+        # en un archivo csv.   
+        with open("tiempos_procesos.csv","a") as file:
+            file.write(str(tiempos)+"\n")
 
 
 
