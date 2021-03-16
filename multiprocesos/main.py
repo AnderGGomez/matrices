@@ -48,10 +48,10 @@ def mul(l):
 if __name__ == "__main__":
 
     #Se define el tamaño del circuito.
-    tam_circuito=3
+    tam_circuito=10
 
     #Se define el conjunto de datos.
-    pruebas=100, 200, 400, 800, 1200, 1400, 1600, 1800, 2000, 2200]
+    pruebas=[100, 200, 400, 800, 1200, 1400, 1600, 1800, 2000, 2200]
 
     for circuito in range (tam_circuito):
 
@@ -90,6 +90,7 @@ if __name__ == "__main__":
 
             tiempos.append(tf-ti)
 
+            print ("1")
         
         print("Circuito {} Completado".format(circuito)) 
 
