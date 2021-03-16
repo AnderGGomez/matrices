@@ -51,7 +51,7 @@ if __name__ == "__main__":
     tam_circuito=3
 
     #Se define el conjunto de datos.
-    pruebas=[100, 110, 220, 330, 440, 450, 560, 660]
+    pruebas=100, 200, 400, 800, 1200, 1400, 1600, 1800, 2000, 2200]
 
     for circuito in range (tam_circuito):
 
