@@ -16,8 +16,8 @@ def llenar(matriz, fil_Col):
     for i in range (fil_Col):
         col=[]
         for j in range(fil_Col):
-            col.append(i)
-            #col.append(random.randint(0, 5))
+            #col.append(i)
+            col.append(random.randint(0, 1000))
         matriz.append(col)
     return
 
@@ -48,10 +48,11 @@ def mul(l):
 if __name__ == "__main__":
 
     #Se define el tamaño del circuito.
-    tam_circuito=10
+    tam_circuito=1
 
     #Se define el conjunto de datos.
-    pruebas=[100, 200, 400, 800, 1200, 1400, 1600, 1800, 2000, 2200]
+    #pruebas=[100, 200, 400, 800, 1200, 1400, 1600, 1800, 2000, 2200]
+    pruebas=[10]
 
     for circuito in range (tam_circuito):
 
@@ -90,7 +91,7 @@ if __name__ == "__main__":
 
             tiempos.append(tf-ti)
 
-            print ("1")
+            imprimir(m)
         
         print("Circuito {} Completado".format(circuito)) 
 
