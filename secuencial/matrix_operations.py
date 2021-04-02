@@ -16,7 +16,7 @@ class Matrix(object):
         for i in range(self._n):
             self._elems.append([])
             for j in range(self._m):
-                self._elems[i].append(random.randint(0, 1000))
+                self._elems[i].append(random.randint(0, 10))
 
     def define_elem(self, i, j, v):
         """ Sobreescribe el valor de una celda """
