@@ -50,7 +50,6 @@ def mul1(lista, matr, n):
 
 #------------------
 if __name__ == "__main__":
-
     #Se define el tamaño del circuito.
     tam_circuito=10
 
