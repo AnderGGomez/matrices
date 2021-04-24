@@ -2,4 +2,14 @@ key_pairs_1.pem
 *.csv
 __pycache__
 *.xlsx
+*.odt
+*.ods
+*.docx
+*.dotx
+*.odt
+ejercicio1_1.c
+ejercicio2_1.c
+ejercicio5_1.c
+tutorial.c
+.setup.sh.swp
 
