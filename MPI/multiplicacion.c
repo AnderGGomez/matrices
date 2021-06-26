@@ -53,10 +53,7 @@ int main(int argc, char* argv[]){
     int acum;
     int *matrizA;
     int **matrizB;
-    //int *matrizT;
     int *matrizR;
-    //int *num;
-    //int *vec;
     
 
     srand(time(0));
@@ -93,9 +90,10 @@ int main(int argc, char* argv[]){
         printf("Rank: %d, Size: %d, Host: %s\n",rank,size, hostname);
 
         matrizA = createMatrix(n_data, n_data, 1); // Master process creates matrix
+
+        /* Al crear la matriz B asumimos que la matriz es transpuesta, de esta manera
+        Podemos implementar la multiplicacion de matrices de optimizando la memoria*/
         
-
-
         for (int i=0; i<n_data; i++){
             for (int j=0; j<n_data; j++){
                 matrizB[i][j]=rand()%1001;
